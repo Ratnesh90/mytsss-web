@@ -1,0 +1,46 @@
+
+
+<section class="mt-16 px-4 py-12 max-w-5xl mx-auto">
+   
+
+<div class="biometric-section px-4 py-8 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">{{ heading }}</h1>
+  
+    <p class="mb-4 text-lg">{{ intro }}</p>
+  
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Why Choose Us?</h2>
+    <ul class="list-disc pl-6 mb-6">
+      <li *ngFor="let benefit of benefits">{{ benefit }}</li>
+    </ul>
+  
+    <h2 class="text-2xl font-semibold mb-4">What’s Included in Our Biometric Installation</h2>
+    <div *ngFor="let item of inclusions" class="mb-4  p-4 rounded">
+      <h3 class="font-semibold text-lg mb-2">{{ item.title }}</h3>
+      <ul class="list-disc pl-6">
+        <li *ngFor="let point of item.points">{{ point }}</li>
+      </ul>
+    </div>
+  
+    <h2 class="text-2xl font-semibold mt-8 mb-2">Available Biometric Devices</h2>
+    <ul class="list-disc pl-6 mb-6">
+      <li *ngFor="let device of devices">{{ device }}</li>
+    </ul>
+  
+    <p class="mb-6 italic">We also install biometric systems integrated with payroll, HRMS, and school management software.</p>
+  
+    <h2 class="text-2xl font-semibold mb-2">Limitations</h2>
+    <ul class="list-disc pl-6 mb-6">
+      <li *ngFor="let note of notes">{{ note }}</li>
+    </ul>
+  
+    <h2 class="text-2xl font-semibold mb-2">Interested in Bulk or Customized Installations?</h2>
+    <ul class="list-disc pl-6 mb-6">
+      <li *ngFor="let item of extras">{{ item }}</li>
+    </ul>
+  
+    <div class="text-center mt-8">
+      <p class="text-lg font-semibold">📞 Please call <strong>{{ contact.name }}</strong> at <strong>{{ contact.phone }}</strong> for a site visit or to request a customized quotation.</p>
+    </div>
+  </div>
+  </section>
+  

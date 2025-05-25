@@ -1,0 +1,139 @@
+<section id="contact" class=" py-16 md:py-24 bg-slate-50 dark:bg-slate-800">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-lg mb-4 text-slate-900 dark:text-white">Get In <span class="text-primary">Touch</span></h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Contact us today to learn more about our services or to request a free consultation
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-8">
+          <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white">Send Us A Message</h3>
+
+          <div *ngIf="showSuccessMessage" class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 p-4 rounded mb-6">
+            Thank you for your message! We'll get back to you soon.
+          </div>
+
+          <div *ngIf="showErrorMessage" class="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 p-4 rounded mb-6">
+            There was an error submitting your message. Please try again later.
+          </div>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Full Name *</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [ngClass]="{'border-red-500': submitted && f['name'].errors}"
+              />
+              <div *ngIf="submitted && f['name'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['name'].errors['required']">Name is required</div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [ngClass]="{'border-red-500': submitted && f['email'].errors}"
+              />
+              <div *ngIf="submitted && f['email'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Please enter a valid email address</div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                formControlName="phone"
+                maxlength="10"
+                (input)="enforcePhoneLimit($event)"
+                pattern="[0-9]*"
+                inputmode="numeric"
+                class="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [ngClass]="{'border-red-500': submitted && f['phone'].errors}"
+                />
+            </div>
+
+            <div class="mb-4">
+              <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Subject *</label>
+              <input
+                type="text"
+                id="subject"
+                formControlName="subject"
+                class="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [ngClass]="{'border-red-500': submitted && f['subject'].errors}"
+              />
+              <div *ngIf="submitted && f['subject'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['subject'].errors['required']">Subject is required</div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message *</label>
+              <textarea
+                id="message"
+                formControlName="message"
+                rows="5"
+                class="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [ngClass]="{'border-red-500': submitted && f['message'].errors}"
+              ></textarea>
+              <div *ngIf="submitted && f['message'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['message'].errors['required']">Message is required</div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-md font-medium transition-colors w-full"
+              [disabled]="submitting"
+            >
+              {{ submitting ? 'Sending...' : 'Send Message' }}
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white">Contact Information</h3>
+            
+            <div class="space-y-6">
+              <div *ngFor="let info of contactInfo" class="flex">
+                <div class="text-primary mr-4 mt-1" [innerHTML]="info.icon"></div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 dark:text-white mb-1">{{ info.title }}</h4>
+                  <p class="text-slate-600 dark:text-slate-400" [innerHTML]="info.details"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-8 h-64">
+            <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Our Location</h3>
+            <div class="w-full h-40 bg-slate-200 dark:bg-slate-700 rounded-md overflow-hidden">
+              <iframe 
+                class="w-full h-full rounded-md"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218.96026097138238!2d77.31690343469374!3d28.588849752848265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce50faee64f71%3A0x4f5d4af8692d882e!2sMYTSSS!5e0!3m2!1sen!2sin!4v1713985158474!5m2!1sen!2sin" 
+                frameborder="0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>

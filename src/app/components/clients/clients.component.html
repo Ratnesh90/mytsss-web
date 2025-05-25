@@ -1,0 +1,39 @@
+<section id="clients" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-lg mb-4 text-slate-900 dark:text-white">Trusted by <span class="text-primary">Leading</span> Businesses</h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Our clients include some of the most respected companies across various industries
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-8 place-items-center mb-16">
+        <div *ngFor="let client of clientIcons" class="flex items-center justify-center w-full h-20">
+          <div class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors" [innerHTML]="client.icon"></div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="mt-20">
+        <h3 class="heading-md text-center mb-12 text-slate-900 dark:text-white">What Our Clients Say</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div *ngFor="let testimonial of testimonials" class="bg-white dark:bg-slate-900 p-6 rounded-lg shadow">
+            <div class="mb-4 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+              </svg>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 mb-6 italic">{{ testimonial.quote }}</p>
+            <div class="flex items-center">
+              <div class="ml-4">
+                <p class="font-bold text-slate-900 dark:text-white">{{ testimonial.name }}</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">{{ testimonial.position }}, {{ testimonial.company }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
