@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "mytsss-web"
-  }
+    "default": "mytsss-web",
+    "staging": "mytsss-web"
+  },
+  "targets": {},
+  "etags": {}
 }
